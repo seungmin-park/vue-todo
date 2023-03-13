@@ -19,7 +19,7 @@ export default {
     addTodo() {
       if (this.newTodoItem !== "") {
         let value = this.newTodoItem && this.newTodoItem.trim();
-        localStorage.setItem(value, value);
+        this.$emit('addTodo', value);
         this.clearInput(); // 단일 책임 원칙 -> 함수 하나가 하나의 기능만 담당하도록 설계
       }
     },

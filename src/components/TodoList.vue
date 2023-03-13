@@ -1,7 +1,7 @@
 <template>
   <section>
     <ul>
-      <li v-for="(todoItem,index) in todoItems" :key="todoItem" class="shadow">
+      <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
         <i class="checkBtn fa fa-check" aria-hidden="true"></i>
         {{ todoItem }}
         <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
@@ -15,26 +15,12 @@
 <script>
 export default {
   name: "TodoList",
-  data() {
-    return {
-      todoItems: [],
-    };
-  },
-
-  created() {
-    // 로컬 스토리지 데이터 -> 뷰 데이터 저장
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(localStorage.key(i));
-      }
-    }
-  },
-
+  props: ['propsdata'],
   methods: {
     // 로컬 스트로지와 뷰 데이터에서 특정 할 일 데이터 삭제
     removeTodo(todoItem, index) {
       localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.propsdata.splice(index, 1);
     },
   },
 };
