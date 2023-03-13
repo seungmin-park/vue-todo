@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
         <i class="checkBtn fa fa-check" aria-hidden="true"></i>
         {{ todoItem }}
@@ -8,7 +8,7 @@
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 
@@ -24,6 +24,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
 
 <style scoped>
 ul {
