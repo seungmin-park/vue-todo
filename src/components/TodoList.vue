@@ -1,10 +1,10 @@
 <template>
   <section>
     <ul>
-      <li v-for="todoItem in todoItems" class="shadow">
+      <li v-for="(todoItem,index) in todoItems" :key="todoItem" class="shadow">
         <i class="checkBtn fa fa-check" aria-hidden="true"></i>
         {{ todoItem }}
-        <span class="removeBtn" type="button">
+        <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </span>
       </li>
@@ -28,14 +28,22 @@ export default {
         this.todoItems.push(localStorage.key(i));
       }
     }
-  }
+  },
+
+  methods: {
+    // 로컬 스트로지와 뷰 데이터에서 특정 할 일 데이터 삭제
+    removeTodo(todoItem, index) {
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
+    },
+  },
 };
 </script>
 
 <style scoped>
 ul {
   list-style-type: none;
-  padding-left: 0px;
+  padding-left: 0;
   margin-top: 0;
   text-align: left;
 }
