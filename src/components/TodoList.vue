@@ -19,8 +19,7 @@ export default {
   methods: {
     // 로컬 스트로지와 뷰 데이터에서 특정 할 일 데이터 삭제
     removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.propsdata.splice(index, 1);
+      this.$emit('removeTodo', todoItem, index);
     },
   },
 };
