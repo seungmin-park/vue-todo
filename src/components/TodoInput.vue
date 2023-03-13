@@ -1,6 +1,6 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keyup.enter="addTodo">
+    <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keypress.enter="addTodo">
     <span class="addContainer" v-on:click="addTodo">
       <i class="addBtn fa fa-plus" aria-hidden="true"></i>
     </span>
@@ -16,9 +16,10 @@
 
 <script>
 import Modal from "./common/Modal.vue";
+
 export default {
   name: "TodoInput",
-  props: ['propsdata'],
+
   data() {
     return {
       newTodoItem: '',
@@ -39,7 +40,7 @@ export default {
       this.newTodoItem = "";
     },
   },
-  components:{
+  components: {
     Modal: Modal,
   }
 }
